@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>MemeMe would like permission to use your camera</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>MemeMe would like permission to access your photos</string>
 </dict>
 </plist>
