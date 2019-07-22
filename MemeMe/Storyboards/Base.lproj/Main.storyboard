@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,21 +22,33 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EP9-vT-oym">
-                                <rect key="frame" x="0.0" y="526" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="vVb-FZ-w8k"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem systemItem="action" id="lrx-Kc-iNn"/>
+                                    <barButtonItem systemItem="action" id="lrx-Kc-iNn">
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="BYZ-38-t0r" id="Uxh-T8-hcV"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUP-Ji-Qad">
-                                <rect key="frame" x="0.0" y="1300" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1L0-yu-caR"/>
-                                    <barButtonItem systemItem="camera" id="WD8-Jv-fXF"/>
+                                    <barButtonItem systemItem="camera" id="WD8-Jv-fXF">
+                                        <connections>
+                                            <action selector="cameraButtonTapped:" destination="BYZ-38-t0r" id="PMV-Cn-j58"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L3c-0V-ZVV"/>
-                                    <barButtonItem title="Album" id="h0i-0l-2Yk"/>
+                                    <barButtonItem title="Album" id="h0i-0l-2Yk">
+                                        <connections>
+                                            <action selector="albumButtonTapped:" destination="BYZ-38-t0r" id="9Fh-1u-Jw7"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ahR-6C-jZe"/>
                                 </items>
                             </toolbar>
@@ -47,7 +59,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-tg-qyn">
-                                <rect key="frame" x="16" y="758" width="382" height="30"/>
+                                <rect key="frame" x="16" y="753" width="382" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -74,6 +86,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomTextField" destination="JBK-tg-qyn" id="741-jl-jXp"/>
+                        <outlet property="imageView" destination="shI-70-Tjc" id="um8-9G-IjP"/>
+                        <outlet property="shareButton" destination="lrx-Kc-iNn" id="CIK-Yo-KDk"/>
+                        <outlet property="topTextField" destination="egh-Cr-Gj9" id="G5a-Jk-zE3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
