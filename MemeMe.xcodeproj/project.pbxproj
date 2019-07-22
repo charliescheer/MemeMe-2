@@ -54,14 +54,38 @@
 		BA237FDB22E6529E00273D62 /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				BA237FF022E6541500273D62 /* Storyboards */,
+				BA237FEF22E6540300273D62 /* Helpers */,
+				BA237FEE22E653FD00273D62 /* Views */,
 				BA237FDC22E6529E00273D62 /* AppDelegate.swift */,
-				BA237FDE22E6529E00273D62 /* ViewController.swift */,
-				BA237FE022E6529E00273D62 /* Main.storyboard */,
 				BA237FE322E652A100273D62 /* Assets.xcassets */,
 				BA237FE522E652A100273D62 /* LaunchScreen.storyboard */,
 				BA237FE822E652A100273D62 /* Info.plist */,
 			);
 			path = MemeMe;
+			sourceTree = "<group>";
+		};
+		BA237FEE22E653FD00273D62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA237FDE22E6529E00273D62 /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA237FEF22E6540300273D62 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BA237FF022E6541500273D62 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BA237FE022E6529E00273D62 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
