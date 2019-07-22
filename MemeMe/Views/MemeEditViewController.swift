@@ -8,18 +8,21 @@
 
 import UIKit
 
-class MemeEditViewController: UIViewController {
+class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
+    let memeTextFieldDelegate = MemeTextFieldDelegate()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        enableTextEditingAndSharing(false)
+        allowTextEditingAndSharing(false)
+        topTextField.delegate = memeTextFieldDelegate
+        bottomTextField.delegate = memeTextFieldDelegate
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,20 +31,15 @@ class MemeEditViewController: UIViewController {
     
     func setupView() {
         if imageView.image != nil {
-            enableTextEditingAndSharing(true)
+            allowTextEditingAndSharing(true)
         }
     }
     
-    func enableTextEditingAndSharing(_ bool : Bool) {
-        if bool {
-            shareButton.isEnabled = true
-            topTextField.isEnabled = true
-            bottomTextField.isEnabled = true
-        } else {
-            shareButton.isEnabled = false
-            topTextField.isEnabled = false
-            bottomTextField.isEnabled = false
-        }
+    func allowTextEditingAndSharing(_ bool : Bool) {
+        shareButton.isEnabled = bool
+        topTextField.isEnabled = bool
+        bottomTextField.isEnabled = bool
+
     }
     
     
