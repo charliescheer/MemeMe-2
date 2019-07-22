@@ -19,7 +19,29 @@ class MemeEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        enableTextEditingAndSharing(false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupView()
+    }
+    
+    func setupView() {
+        if imageView.image != nil {
+            enableTextEditingAndSharing(true)
+        }
+    }
+    
+    func enableTextEditingAndSharing(_ bool : Bool) {
+        if bool {
+            shareButton.isEnabled = true
+            topTextField.isEnabled = true
+            bottomTextField.isEnabled = true
+        } else {
+            shareButton.isEnabled = false
+            topTextField.isEnabled = false
+            bottomTextField.isEnabled = false
+        }
     }
     
     
