@@ -33,6 +33,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         if imageView.image != nil {
             allowTextEditingAndSharing(true)
         }
+        
+        view.backgroundColor = .lightGray
     }
     
     func allowTextEditingAndSharing(_ bool : Bool) {
