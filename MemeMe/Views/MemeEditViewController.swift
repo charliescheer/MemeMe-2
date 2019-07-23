@@ -66,11 +66,30 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
             imagePicker.sourceType = .photoLibrary
         default:
             print("Couldn't get image")
+            //ADD AN ALERT TO DISPLAY TO THE USER
             return
         }
         
         present(imagePicker, animated: true, completion: nil)
     }
     
+}
+
+extension MemeEditViewController {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        print("image selected")
+        if let image = info[.originalImage] as? UIImage {
+            print("receive image")
+            imageView.image = image
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
