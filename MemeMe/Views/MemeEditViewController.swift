@@ -43,14 +43,33 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     
-    @IBAction func cameraButtonTapped(_ sender: Any) {
+    @IBAction func cameraButtonTapped(_ sender: UIBarButtonItem) {
+        activateUIImagePicker(sender.tag)
     }
     
-    @IBAction func albumButtonTapped(_ sender: Any) {
+    @IBAction func albumButtonTapped(_ sender: UIBarButtonItem) {
+        activateUIImagePicker(sender.tag)
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
         
+    }
+    
+    func activateUIImagePicker(_ tag : Int) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        switch tag {
+        case 1 :
+            imagePicker.sourceType = .camera
+        case 2 :
+            imagePicker.sourceType = .photoLibrary
+        default:
+            print("Couldn't get image")
+            return
+        }
+        
+        present(imagePicker, animated: true, completion: nil)
     }
     
 }

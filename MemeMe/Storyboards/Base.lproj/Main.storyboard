@@ -38,13 +38,13 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1L0-yu-caR"/>
-                                    <barButtonItem systemItem="camera" id="WD8-Jv-fXF">
+                                    <barButtonItem tag="1" systemItem="camera" id="WD8-Jv-fXF">
                                         <connections>
                                             <action selector="cameraButtonTapped:" destination="BYZ-38-t0r" id="PMV-Cn-j58"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L3c-0V-ZVV"/>
-                                    <barButtonItem title="Album" id="h0i-0l-2Yk">
+                                    <barButtonItem tag="2" title="Album" id="h0i-0l-2Yk">
                                         <connections>
                                             <action selector="albumButtonTapped:" destination="BYZ-38-t0r" id="9Fh-1u-Jw7"/>
                                         </connections>
