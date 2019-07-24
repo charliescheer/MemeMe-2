@@ -35,6 +35,12 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         view.backgroundColor = .lightGray
+        setupTextFields(topTextField, topTextField.tag)
+        topTextField.layer.backgroundColor = UIColor.clear.cgColor
+    }
+    
+    func setupTextFields(_ textField: UITextField, _ tag : Int) {
+        textField.layer.backgroundColor = UIColor.clear.cgColor
     }
     
     func allowTextEditingAndSharing(_ bool : Bool) {
@@ -56,6 +62,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func shareButtonTapped(_ sender: Any) {
         
     }
+    
     
     func activateUIImagePicker(_ tag : Int) {
         let imagePicker = UIImagePickerController()
