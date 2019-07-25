@@ -35,12 +35,26 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         view.backgroundColor = .lightGray
-        setupTextFields(topTextField, topTextField.tag)
-        topTextField.layer.backgroundColor = UIColor.clear.cgColor
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        
+        let memeTextAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.white,
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth: -2,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
+        ]
+        
+        
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
     }
     
     func setupTextFields(_ textField: UITextField, _ tag : Int) {
-        textField.layer.backgroundColor = UIColor.clear.cgColor
+        
     }
     
     func allowTextEditingAndSharing(_ bool : Bool) {
