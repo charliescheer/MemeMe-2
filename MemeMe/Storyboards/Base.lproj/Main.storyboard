@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shI-70-Tjc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shI-70-Tjc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EP9-vT-oym">
@@ -88,6 +88,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="JBK-tg-qyn" id="741-jl-jXp"/>
+                        <outlet property="cameraButton" destination="WD8-Jv-fXF" id="YFZ-dV-LDe"/>
                         <outlet property="imageView" destination="shI-70-Tjc" id="um8-9G-IjP"/>
                         <outlet property="shareButton" destination="lrx-Kc-iNn" id="CIK-Yo-KDk"/>
                         <outlet property="topTextField" destination="egh-Cr-Gj9" id="G5a-Jk-zE3"/>

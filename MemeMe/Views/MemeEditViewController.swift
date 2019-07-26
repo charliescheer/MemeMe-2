@@ -15,6 +15,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -24,6 +25,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         allowTextEditingAndSharing(false)
         topTextField.delegate = memeTextFieldDelegate
         bottomTextField.delegate = memeTextFieldDelegate
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
+            cameraButton.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,12 +120,11 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         
         switch tag {
         case 1 :
-            imagePicker.sourceType = .camera
+                imagePicker.sourceType = .camera
         case 2 :
             imagePicker.sourceType = .photoLibrary
         default:
-            print("Couldn't get image")
-            //ADD AN ALERT TO DISPLAY TO THE USER
+            displayErrorAlert(title: "Image Failed", message: "Could not access images at this time.  Please try again")
             return
         }
         
@@ -138,6 +142,13 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func displayErrorAlert(title: String, message : String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        
+        present(alert, animated: true)
     }
     
 }
