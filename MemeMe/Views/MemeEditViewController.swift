@@ -92,9 +92,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-        print("inside get keyboard height")
         return keyboardSize.cgRectValue.height
-        
     }
     
     //MARK: Action functions
@@ -130,10 +128,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        print("image selected")
         if let image = info[.originalImage] as? UIImage {
-            print("receive image")
             imageView.image = image
         }
         
