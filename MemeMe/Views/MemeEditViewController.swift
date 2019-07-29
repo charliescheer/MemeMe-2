@@ -9,13 +9,16 @@
 import UIKit
 
 class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     //MARK: Properties
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var topToolBar: UIToolbar!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
+    
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -69,10 +72,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-//
-//    func setupTextFields(_ textField: UITextField, _ tag : Int) {
-//
-//    }
+    //
+    //    func setupTextFields(_ textField: UITextField, _ tag : Int) {
+    //
+    //    }
     
     //MARK: Keyboard will show notification methods
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -110,9 +113,35 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
-        
+        let meme = save()
+        let activities = [meme.meme]
+        let shareView = UIActivityViewController(activityItems: activities, applicationActivities: nil)
+        present(shareView, animated: true, completion: nil)
     }
     
+    func save () -> Meme {
+        let meme = Meme(topTextField.text!, bottomTextField.text!, imageView.image!, memedImage: generateMemedImage())
+        
+        return meme
+    }
+    
+    func generateMemedImage() -> UIImage {
+        hideToolbars(true)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        hideToolbars(false)
+        
+        return memedImage
+    }
+    
+    func hideToolbars(_ bool: Bool) {
+        self.topToolBar.isHidden = bool
+        self.bottomToolBar.isHidden = bool
+    }
     
     func activateUIImagePicker(_ tag : Int) {
         let imagePicker = UIImagePickerController()
@@ -120,7 +149,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         
         switch tag {
         case 1 :
-                imagePicker.sourceType = .camera
+            imagePicker.sourceType = .camera
         case 2 :
             imagePicker.sourceType = .photoLibrary
         default:
@@ -157,7 +186,7 @@ extension MemeEditViewController {
     enum constants {
         static let fontStyle = "HelveticaNeue-CondensedBlack"
     }
-
+    
     
 }
 

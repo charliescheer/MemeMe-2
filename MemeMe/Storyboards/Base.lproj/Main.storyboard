@@ -88,10 +88,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="JBK-tg-qyn" id="741-jl-jXp"/>
+                        <outlet property="bottomToolBar" destination="zUP-Ji-Qad" id="O7m-nH-JT3"/>
                         <outlet property="cameraButton" destination="WD8-Jv-fXF" id="YFZ-dV-LDe"/>
                         <outlet property="imageView" destination="shI-70-Tjc" id="um8-9G-IjP"/>
                         <outlet property="shareButton" destination="lrx-Kc-iNn" id="CIK-Yo-KDk"/>
                         <outlet property="topTextField" destination="egh-Cr-Gj9" id="G5a-Jk-zE3"/>
+                        <outlet property="topToolBar" destination="EP9-vT-oym" id="UuB-pn-Feb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
