@@ -38,13 +38,13 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1L0-yu-caR"/>
-                                    <barButtonItem systemItem="camera" id="WD8-Jv-fXF">
+                                    <barButtonItem tag="1" systemItem="camera" id="WD8-Jv-fXF">
                                         <connections>
                                             <action selector="cameraButtonTapped:" destination="BYZ-38-t0r" id="PMV-Cn-j58"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L3c-0V-ZVV"/>
-                                    <barButtonItem title="Album" id="h0i-0l-2Yk">
+                                    <barButtonItem tag="2" title="Album" id="h0i-0l-2Yk">
                                         <connections>
                                             <action selector="albumButtonTapped:" destination="BYZ-38-t0r" id="9Fh-1u-Jw7"/>
                                         </connections>
@@ -52,17 +52,17 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ahR-6C-jZe"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egh-Cr-Gj9">
-                                <rect key="frame" x="16" y="118" width="382" height="30"/>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egh-Cr-Gj9">
+                                <rect key="frame" x="16" y="118" width="382" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-tg-qyn">
-                                <rect key="frame" x="16" y="753" width="382" height="30"/>
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-tg-qyn">
+                                <rect key="frame" x="16" y="766" width="382" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,9 +88,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="JBK-tg-qyn" id="741-jl-jXp"/>
+                        <outlet property="bottomToolBar" destination="zUP-Ji-Qad" id="O7m-nH-JT3"/>
+                        <outlet property="cameraButton" destination="WD8-Jv-fXF" id="YFZ-dV-LDe"/>
                         <outlet property="imageView" destination="shI-70-Tjc" id="um8-9G-IjP"/>
                         <outlet property="shareButton" destination="lrx-Kc-iNn" id="CIK-Yo-KDk"/>
                         <outlet property="topTextField" destination="egh-Cr-Gj9" id="G5a-Jk-zE3"/>
+                        <outlet property="topToolBar" destination="EP9-vT-oym" id="UuB-pn-Feb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
