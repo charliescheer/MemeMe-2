@@ -72,11 +72,6 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    //
-    //    func setupTextFields(_ textField: UITextField, _ tag : Int) {
-    //
-    //    }
-    
     //MARK: Keyboard will show notification methods
     @objc func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isFirstResponder {
@@ -113,16 +108,31 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
-        let meme = save()
-        let activities = [meme.meme]
-        let shareView = UIActivityViewController(activityItems: activities, applicationActivities: nil)
-        present(shareView, animated: true, completion: nil)
+        let meme = generateMemedImage()
+        
+        let activityViewController = UIActivityViewController(activityItems: [meme], applicationActivities: nil)
+        
+        activityViewController.completionWithItemsHandler = { ( acitivityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
+    
+            if completed == true {
+                self.save()
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("service was canceled")
+            }
+            
+            if error != nil {
+                print("there was an error of type \(error!.localizedDescription)")
+            }
+            
+        }
+        present(activityViewController, animated: true, completion: nil)
+
     }
     
-    func save () -> Meme {
-        let meme = Meme(topTextField.text!, bottomTextField.text!, imageView.image!, memedImage: generateMemedImage())
+    func save () {
         
-        return meme
+        let meme = Meme(topTextField.text!, bottomTextField.text!, imageView.image!, memedImage: generateMemedImage())
     }
     
     func generateMemedImage() -> UIImage {
