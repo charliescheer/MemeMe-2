@@ -44,12 +44,14 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func setupView() {
+        //if an image has been selected enable the text fields and sharing button
         if imageView.image != nil {
             allowTextEditingAndSharing(true)
         }
         
         view.backgroundColor = .lightGray
         
+        //set text field properties and delegates
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         
@@ -65,6 +67,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         bottomTextField.defaultTextAttributes = memeTextAttributes
     }
     
+    //Boolean toggle to enable text fields and the sharing button
     func allowTextEditingAndSharing(_ bool : Bool) {
         shareButton.isEnabled = bool
         topTextField.isEnabled = bool
@@ -108,8 +111,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
+        //generate meme
         let meme = generateMemedImage()
         
+        //Set activity view controller and present it
         let activityViewController = UIActivityViewController(activityItems: [meme], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = { ( acitivityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
@@ -130,29 +135,37 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
 
     }
     
+    //Creates Meme object and sets it's properties
     func save () {
         
         let meme = Meme(topTextField.text!, bottomTextField.text!, imageView.image!, memedImage: generateMemedImage())
     }
     
+    //Generate the meme by combining the image and the text fields
     func generateMemedImage() -> UIImage {
+        //hide the toolbars
         hideToolbars(true)
         
+        //capture the screen
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
+        //restore the toolbars
         hideToolbars(false)
         
         return memedImage
     }
     
+    
+    //Boolean toggle to hide or show the toolsbars on the screen
     func hideToolbars(_ bool: Bool) {
         self.topToolBar.isHidden = bool
         self.bottomToolBar.isHidden = bool
     }
     
+    //Create and display a UI image picker controller for camera or photo library
     func activateUIImagePicker(_ tag : Int) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -170,6 +183,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         present(imagePicker, animated: true, completion: nil)
     }
     
+    
+    //MARK: Image picker methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             imageView.image = image
@@ -183,6 +198,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
     
+    //Generic UIAlert function
     func displayErrorAlert(title: String, message : String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
