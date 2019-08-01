@@ -26,8 +26,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         allowTextEditingAndSharing(false)
-        topTextField.delegate = memeTextFieldDelegate
-        bottomTextField.delegate = memeTextFieldDelegate
+        setupView()
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
             cameraButton.isEnabled = false
@@ -35,8 +34,11 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        setupView()
         subscribeToKeyboardNotifications()
+        if imageView.image != nil {
+            allowTextEditingAndSharing(true)
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,19 +54,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         view.backgroundColor = .lightGray
         
         //set text field properties and delegates
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        
-        let memeTextAttributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.black,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: constants.fontStyle, size: 40)!,
-            NSAttributedString.Key.strokeWidth: -2,
-            NSAttributedString.Key.paragraphStyle: paragraphStyle
-        ]
-        
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        configureTextField(topTextField, text: "TOP")
+        configureTextField(bottomTextField, text: "BOTTOM")
     }
     
     //Boolean toggle to enable text fields and the sharing button
@@ -73,6 +64,23 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         topTextField.isEnabled = bool
         bottomTextField.isEnabled = bool
         
+    }
+    
+    func configureTextField(_ textField: UITextField, text: String) {
+        textField.text = text
+        textField.textAlignment = .center
+        textField.delegate = memeTextFieldDelegate
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        textField.defaultTextAttributes = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: constants.fontStyle, size: 40)!,
+            NSAttributedString.Key.strokeWidth: -2,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
+        ]
     }
     
     //MARK: Keyboard will show notification methods
