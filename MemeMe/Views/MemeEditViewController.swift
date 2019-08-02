@@ -34,6 +34,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         subscribeToKeyboardNotifications()
         if imageView.image != nil {
             allowTextEditingAndSharing(true)
@@ -42,6 +43,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -101,6 +103,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {

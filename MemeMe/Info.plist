@@ -45,5 +45,7 @@
 	<string>MemeMe would like permission to use your camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>MemeMe would like permission to access your photos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>MemeMe would like permission to access this function</string>
 </dict>
 </plist>
