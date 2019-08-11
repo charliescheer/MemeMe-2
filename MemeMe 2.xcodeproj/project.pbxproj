@@ -15,6 +15,7 @@
 		BA237FE722E652A100273D62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA237FE522E652A100273D62 /* LaunchScreen.storyboard */; };
 		BA237FF222E65B0900273D62 /* MemeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA237FF122E65B0900273D62 /* MemeTextFieldDelegate.swift */; };
 		BADACAE52300CFF000DEB7EF /* BrowseMeme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BADACAE42300CFF000DEB7EF /* BrowseMeme.storyboard */; };
+		BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAE62300D15100DEB7EF /* BrowseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		BA237FE822E652A100273D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA237FF122E65B0900273D62 /* MemeTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		BADACAE42300CFF000DEB7EF /* BrowseMeme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BrowseMeme.storyboard; sourceTree = "<group>"; };
+		BADACAE62300D15100DEB7EF /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				BA237FDE22E6529E00273D62 /* MemeEditViewController.swift */,
+				BADACAE62300D15100DEB7EF /* BrowseViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				BA0B331C22EF757900BED62C /* Meme.swift in Sources */,
 				BA237FF222E65B0900273D62 /* MemeTextFieldDelegate.swift in Sources */,
 				BA237FDD22E6529E00273D62 /* AppDelegate.swift in Sources */,
+				BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
