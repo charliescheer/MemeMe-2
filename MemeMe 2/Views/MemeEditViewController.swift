@@ -146,10 +146,14 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
 
     }
     
+    @IBAction func cancelWasTapped(_ sender: Any) {
+        
+    }
+    
     //Creates Meme object and sets it's properties
     func save () {
         
-        let meme = Meme(topTextField.text!, bottomTextField.text!, imageView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
     }
     
     //Generate the meme by combining the image and the text fields
