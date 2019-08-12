@@ -11,3 +11,9 @@ import UIKit
 class BrowseCollectionViewController: BrowseViewController {
     
 }
+
+extension BrowseCollectionViewController: StoryboardLoadable {
+    static var storyboardName: String {
+        return "BrowseCollectionViewController"
+    }
+}

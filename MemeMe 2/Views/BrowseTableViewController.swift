@@ -11,3 +11,9 @@ import UIKit
 class BrowseTableViewController: BrowseViewController {
     
 }
+
+extension BrowseTableViewController: StoryboardLoadable {
+    static var storyboardName: String {
+        return "BrowseTableViewController"
+    }
+}
