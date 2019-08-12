@@ -19,7 +19,6 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var bottomToolBar: UIToolbar!
     
-    
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
     //MARK: View loading/disappearing functions
@@ -147,7 +146,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func cancelWasTapped(_ sender: Any) {
-        
+            self.dismiss(animated: true, completion: nil)
     }
     
     //Creates Meme object and sets it's properties
@@ -221,6 +220,12 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         present(alert, animated: true)
     }
     
+}
+
+extension MemeEditViewController: StoryboardLoadable {
+    static var storyboardName: String {
+        return "CreateMeme"
+    }
 }
 
 extension MemeEditViewController {
