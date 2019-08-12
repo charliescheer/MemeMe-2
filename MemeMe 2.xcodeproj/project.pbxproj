@@ -18,7 +18,6 @@
 		BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAE62300D15100DEB7EF /* BrowseViewController.swift */; };
 		BADACAE92300F13000DEB7EF /* BrowseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAE82300F13000DEB7EF /* BrowseCollectionViewController.swift */; };
 		BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */; };
-		BADACAED2300F22700DEB7EF /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEC2300F22700DEB7EF /* StoryboardLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		BADACAE62300D15100DEB7EF /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		BADACAE82300F13000DEB7EF /* BrowseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCollectionViewController.swift; sourceTree = "<group>"; };
 		BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewController.swift; sourceTree = "<group>"; };
-		BADACAEC2300F22700DEB7EF /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				BA237FF122E65B0900273D62 /* MemeTextFieldDelegate.swift */,
-				BADACAEC2300F22700DEB7EF /* StoryboardLoadable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -193,7 +190,6 @@
 				BA0B331C22EF757900BED62C /* Meme.swift in Sources */,
 				BADACAE92300F13000DEB7EF /* BrowseCollectionViewController.swift in Sources */,
 				BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */,
-				BADACAED2300F22700DEB7EF /* StoryboardLoadable.swift in Sources */,
 				BA237FF222E65B0900273D62 /* MemeTextFieldDelegate.swift in Sources */,
 				BA237FDD22E6529E00273D62 /* AppDelegate.swift in Sources */,
 				BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */,

@@ -16,7 +16,10 @@ class BrowseViewController: UIViewController {
     }
     
     @objc func addMeme() {
-        let vc = MemeEditViewController.loadViewController()
+        let storyboard = UIStoryboard(name: "CreateMeme", bundle: Bundle.main)
+        guard let vc = storyboard.instantiateInitialViewController() else {
+            return
+        }
         
         present(vc, animated: true, completion: nil)
     }

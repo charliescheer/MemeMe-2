@@ -222,12 +222,6 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
 }
 
-extension MemeEditViewController: StoryboardLoadable {
-    static var storyboardName: String {
-        return "CreateMeme"
-    }
-}
-
 extension MemeEditViewController {
     enum constants {
         static let fontStyle = "HelveticaNeue-CondensedBlack"
