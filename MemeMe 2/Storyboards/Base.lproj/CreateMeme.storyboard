@@ -29,7 +29,7 @@
                                 <items>
                                     <barButtonItem systemItem="action" id="lrx-Kc-iNn">
                                         <connections>
-                                            <action selector="shareButtonTapped:" destination="BYZ-38-t0r" id="Uxh-T8-hcV"/>
+                                            <action selector="shareButtonTapped:" destination="BYZ-38-t0r" id="Dvp-zI-zif"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
