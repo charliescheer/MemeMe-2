@@ -13,7 +13,7 @@
         <!--Meme Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemeEditViewController" customModule="MemeMe_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditViewController" id="BYZ-38-t0r" customClass="MemeEditViewController" customModule="MemeMe_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,6 +27,12 @@
                                     <constraint firstAttribute="height" constant="44" id="vVb-FZ-w8k"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem systemItem="cancel" id="ygm-OQ-REt">
+                                        <connections>
+                                            <action selector="cancelWasTapped:" destination="BYZ-38-t0r" id="xMR-cu-Kqz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RbB-LL-NlO"/>
                                     <barButtonItem systemItem="action" id="lrx-Kc-iNn">
                                         <connections>
                                             <action selector="shareButtonTapped:" destination="BYZ-38-t0r" id="Dvp-zI-zif"/>
