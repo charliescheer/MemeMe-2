@@ -22,6 +22,13 @@ struct Meme: Codable {
         case meme
     }
     
+    init(topText: String, bottomText: String, image: UIImage, meme: UIImage) {
+        self.topText = topText
+        self.bottomText = bottomText
+        self.image = image
+        self.meme = meme
+    }
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
