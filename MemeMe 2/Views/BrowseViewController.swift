@@ -9,10 +9,20 @@
 import UIKit
 
 class BrowseViewController: UIViewController {
+    var memesArray = [Meme]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme))
+        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        memesArray = getMemesArray()
+        
+        print(memesArray.count)
     }
     
     @objc func addMeme() {
@@ -22,5 +32,11 @@ class BrowseViewController: UIViewController {
         }
         
         present(vc, animated: true, completion: nil)
+    }
+    
+    //Gets an array of memes from the AppDelegate
+    func getMemesArray() -> [Meme] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.memesArray
     }
 }

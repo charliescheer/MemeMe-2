@@ -18,6 +18,7 @@
 		BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAE62300D15100DEB7EF /* BrowseViewController.swift */; };
 		BADACAE92300F13000DEB7EF /* BrowseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAE82300F13000DEB7EF /* BrowseCollectionViewController.swift */; };
 		BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */; };
+		BADACAEF230206CC00DEB7EF /* BrowseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEE230206CC00DEB7EF /* BrowseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BADACAE62300D15100DEB7EF /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		BADACAE82300F13000DEB7EF /* BrowseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCollectionViewController.swift; sourceTree = "<group>"; };
 		BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewController.swift; sourceTree = "<group>"; };
+		BADACAEE230206CC00DEB7EF /* BrowseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				BADACAE62300D15100DEB7EF /* BrowseViewController.swift */,
 				BADACAE82300F13000DEB7EF /* BrowseCollectionViewController.swift */,
 				BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */,
+				BADACAEE230206CC00DEB7EF /* BrowseTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA237FDF22E6529E00273D62 /* MemeEditViewController.swift in Sources */,
+				BADACAEF230206CC00DEB7EF /* BrowseTableViewCell.swift in Sources */,
 				BA0B331C22EF757900BED62C /* Meme.swift in Sources */,
 				BADACAE92300F13000DEB7EF /* BrowseCollectionViewController.swift in Sources */,
 				BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */,
