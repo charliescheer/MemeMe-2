@@ -20,6 +20,7 @@
 		BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */; };
 		BADACAEF230206CC00DEB7EF /* BrowseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAEE230206CC00DEB7EF /* BrowseTableViewCell.swift */; };
 		BADACAF123020E6F00DEB7EF /* BrowseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAF023020E6F00DEB7EF /* BrowseCollectionViewCell.swift */; };
+		BADACAF3230220A900DEB7EF /* MemoryFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADACAF2230220A900DEB7EF /* MemoryFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BADACAEA2300F15500DEB7EF /* BrowseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewController.swift; sourceTree = "<group>"; };
 		BADACAEE230206CC00DEB7EF /* BrowseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableViewCell.swift; sourceTree = "<group>"; };
 		BADACAF023020E6F00DEB7EF /* BrowseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCollectionViewCell.swift; sourceTree = "<group>"; };
+		BADACAF2230220A900DEB7EF /* MemoryFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				BA237FF122E65B0900273D62 /* MemeTextFieldDelegate.swift */,
+				BADACAF2230220A900DEB7EF /* MemoryFunctions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				BADACAF123020E6F00DEB7EF /* BrowseCollectionViewCell.swift in Sources */,
 				BADACAE92300F13000DEB7EF /* BrowseCollectionViewController.swift in Sources */,
 				BADACAEB2300F15500DEB7EF /* BrowseTableViewController.swift in Sources */,
+				BADACAF3230220A900DEB7EF /* MemoryFunctions.swift in Sources */,
 				BA237FF222E65B0900273D62 /* MemeTextFieldDelegate.swift in Sources */,
 				BA237FDD22E6529E00273D62 /* AppDelegate.swift in Sources */,
 				BADACAE72300D15100DEB7EF /* BrowseViewController.swift in Sources */,
