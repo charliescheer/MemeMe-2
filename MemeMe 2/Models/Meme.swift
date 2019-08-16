@@ -15,6 +15,7 @@ struct Meme: Codable {
     var image: UIImage
     var meme: UIImage
     
+    //Coding Keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
         case topText
         case bottomText
@@ -22,6 +23,8 @@ struct Meme: Codable {
         case meme
     }
     
+    //Convenience Init for creating a meme with all of the functions
+    //Required after adding the Codeable protocol
     init(topText: String, bottomText: String, image: UIImage, meme: UIImage) {
         self.topText = topText
         self.bottomText = bottomText
@@ -29,6 +32,7 @@ struct Meme: Codable {
         self.meme = meme
     }
     
+    //Init to decode the meme from archive
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -47,6 +51,7 @@ struct Meme: Codable {
         }
     }
     
+    //Encode the meme to data for archiving
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(topText, forKey: .topText)
@@ -63,6 +68,7 @@ struct Meme: Codable {
         try container.encode(memeData, forKey: .meme)
     }
     
+    //Convert a meme to data for archiving
     func getMemeAsData() -> Data {
         let encoder = PropertyListEncoder()
         var memeData = Data()

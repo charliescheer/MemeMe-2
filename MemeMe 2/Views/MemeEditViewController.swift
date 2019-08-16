@@ -151,6 +151,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     //Creates Meme object and sets it's properties
+    //Save meme to coreData
     func save () {
         let context = MemoryFunctions.getManagedObjectContext()
         

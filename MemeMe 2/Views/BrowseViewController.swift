@@ -22,6 +22,7 @@ class BrowseViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //Fetch memes from CoreData
         do {
             try resultsController.performFetch()
         } catch {

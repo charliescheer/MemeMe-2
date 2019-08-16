@@ -33,6 +33,8 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
             return UICollectionViewCell()
         }
         
+        //Decode the data saved in the Memes NSManagedObject to get the meme object
+        //Present the decoded meme in the collectionView
         if let memeData = resultsController.object(at: indexPath) as? Memes {
             do {
                 let decoder = PropertyListDecoder()

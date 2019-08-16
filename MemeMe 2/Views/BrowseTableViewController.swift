@@ -36,6 +36,8 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
         
+        //Decode the data saved in the Memes NSManagedObject to get the meme object
+        //Present the decoded meme in the tableView
         if let memeData = resultsController.object(at: indexPath) as? Memes {
             do {
                 let decoder = PropertyListDecoder()
