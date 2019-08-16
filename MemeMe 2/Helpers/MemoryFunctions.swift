@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum MemoryFunctions {
     static func archiveMemesArray(_ memesArray: [Meme]) -> Data {
@@ -55,10 +56,65 @@ enum MemoryFunctions {
         
         return unarchivedMemesArray
     }
+    
+    //MARK: CoreData functions and Properties
+    static var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: data.persistentContainerName)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    static func getManagedObjectContext() -> NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    static func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    static var resultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<NSFetchRequestResult> in
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: data.entityName)
+        var managedObjectContext = persistentContainer.viewContext
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: data.sortDescriptor, ascending: false)]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: managedObjectContext,
+                                                    sectionNameKeyPath: nil, cacheName: nil)
+        
+        do{
+            try controller.performFetch()
+        } catch let error as NSError {
+            assertionFailure("Failed to performFetch. \(error)")
+        }
+        
+        var entityCount = controller.sections!.count
+        
+        return controller
+    }()
+    
 }
 
 extension MemoryFunctions {
     enum defaults {
         static let savedMemes = "savedMemes"
+    }
+    
+    enum data {
+        static let persistentContainerName = "persistentContainer"
+        static let entityName = "Memes"
+        static let sortDescriptor = "uuid"
     }
 }
