@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class BrowseViewController: UIViewController {
-    var memesArray = [Meme]()
     let resultsController = MemoryFunctions.resultsController
     
     override func viewDidLoad() {
