@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class BrowseTableViewController: BrowseViewController {
     @IBOutlet weak var table: UITableView!
@@ -21,7 +22,11 @@ class BrowseTableViewController: BrowseViewController {
 extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return memesArray.count
+        guard let fetchedResultsArray = resultsController.fetchedObjects else {
+            return 0
+        }
+        
+    return fetchedResultsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -31,10 +36,17 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
         
-        browseTableCell.memeImageView.image = memesArray[indexPath.row].meme
-        browseTableCell.topTextLabel.text = memesArray[indexPath.row].topText
-        browseTableCell.bottomTextLabel.text = memesArray[indexPath.row].bottomText
-        
+        if let memeData = resultsController.object(at: indexPath) as? Memes {
+            do {
+                let decoder = PropertyListDecoder()
+                let meme = try decoder.decode(Meme.self, from: memeData.meme!)
+                browseTableCell.memeImageView.image = meme.meme
+                browseTableCell.topTextLabel.text = meme.topText
+                browseTableCell.bottomTextLabel.text = meme.bottomText
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     
     return browseTableCell
     }

@@ -62,4 +62,18 @@ struct Meme: Codable {
         try container.encode(imageData, forKey: .image)
         try container.encode(memeData, forKey: .meme)
     }
+    
+    func getMemeAsData() -> Data {
+        let encoder = PropertyListEncoder()
+        var memeData = Data()
+        
+        do {
+            let data = try encoder.encode(self)
+            memeData = data
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return memeData
+    }
 }

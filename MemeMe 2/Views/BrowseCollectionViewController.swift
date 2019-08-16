@@ -22,7 +22,10 @@ class BrowseCollectionViewController: BrowseViewController {
 
 extension BrowseCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memesArray.count
+        guard let fetchedResultsArray = resultsController.fetchedObjects else {
+            return 0
+        }
+        return fetchedResultsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -30,8 +33,15 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
             return UICollectionViewCell()
         }
         
-        cell.browseImageView.image = memesArray[indexPath.row].meme
-        
+        if let memeData = resultsController.object(at: indexPath) as? Memes {
+            do {
+                let decoder = PropertyListDecoder()
+                let meme = try decoder.decode(Meme.self, from: memeData.meme!)
+                cell.browseImageView.image = meme.meme
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
         
         return cell
     }

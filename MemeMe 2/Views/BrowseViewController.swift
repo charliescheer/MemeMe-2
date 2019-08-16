@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class BrowseViewController: UIViewController {
     var memesArray = [Meme]()
+    let resultsController = MemoryFunctions.resultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +22,11 @@ class BrowseViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        memesArray = getMemesArray()
-        
-        print(memesArray.count)
+        do {
+            try resultsController.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @objc func addMeme() {
@@ -32,11 +36,5 @@ class BrowseViewController: UIViewController {
         }
         
         present(vc, animated: true, completion: nil)
-    }
-    
-    //Gets an array of memes from the AppDelegate
-    func getMemesArray() -> [Meme] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.memesArray
     }
 }

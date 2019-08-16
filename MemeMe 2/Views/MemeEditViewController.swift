@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -151,8 +152,18 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //Creates Meme object and sets it's properties
     func save () {
+        let context = MemoryFunctions.getManagedObjectContext()
         
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
+        let memeData = meme.getMemeAsData()
+        
+        if let memeToBeSaved = NSEntityDescription.insertNewObject(forEntityName: data.entityName, into: context) as? Memes {
+            memeToBeSaved.uuid = UUID()
+            memeToBeSaved.meme = memeData
+        }
+        
+        MemoryFunctions.saveContext(context: context)
+        
     }
         
     
@@ -226,6 +237,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
 extension MemeEditViewController {
     enum constants {
         static let fontStyle = "HelveticaNeue-CondensedBlack"
+    }
+    
+    enum data {
+        static let entityName = "Memes"
     }
 }
 
