@@ -11,13 +11,30 @@ import UIKit
 class BrowseCollectionViewController: BrowseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    private let spacing: CGFloat = 1.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setFlowLayoutProperties()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         collectionView.reloadData()
     }
+    
+    func setFlowLayoutProperties() {
+        
+        flowLayout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        flowLayout.minimumInteritemSpacing = spacing
+        flowLayout.minimumLineSpacing = spacing
+
+        
+    }
+    
 }
 
 extension BrowseCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -45,11 +62,29 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
             }
         }
         
+        cell.backgroundColor = UIColor.blue
+        
         return cell
     }
+
     
+    /*CollectionViewCell Spacing code found at https://medium.com/@NickBabo/equally-spaced-uicollectionview-cells-6e60ce8d457b
+    Author:Nicholas Babo
+    Article: Equally Spaced UICollectionView Cells
+    Site: Medium*/
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width/3, height: self.view.frame.width/3)
+        let numberOfItemsPerRow: CGFloat = 5
+        let spacingBetweenItems: CGFloat = 3
+        
+        let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenItems)
+        
+        if let collection = self.collectionView {
+            let width = (collection.bounds.width - totalSpacing) / numberOfItemsPerRow
+            return CGSize(width: width, height: width)
+        } else {
+            return CGSize(width: 0.0, height: 0.0)
+        }
+        
     }
 }
 

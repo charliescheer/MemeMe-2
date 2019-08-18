@@ -10,5 +10,5 @@ import UIKit
 
 class BrowseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var browseImageView: UIImageView!
-    
+
 }

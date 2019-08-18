@@ -12,9 +12,13 @@ import CoreData
 class BrowseTableViewController: BrowseViewController {
     @IBOutlet weak var table: UITableView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.table.rowHeight = 200
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        table.rowHeight = 200
         table.reloadData()
     }
 }
