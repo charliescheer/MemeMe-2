@@ -30,7 +30,7 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
             return 0
         }
         
-    return fetchedResultsArray.count
+        return fetchedResultsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,9 +53,40 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
                 print(error.localizedDescription)
             }
         }
-    
-    return browseTableCell
+        
+        return browseTableCell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let context = MemoryFunctions.getManagedObjectContext()
+            guard let objectToDelete = resultsController.object(at: indexPath) as? Memes else {
+                return
+            }
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memes")
+            
+            
+            
+            do {
+                try context.fetch(fetchRequest)
+                context.delete(objectToDelete)
+                print("success")
+                try context.save()
+            } catch {
+                print("oops")
+            }
+            
+            do {
+                try resultsController.performFetch()
+                tableView.reloadData()
+            } catch {
+                print("oops")
+            }
+
+        }
+    }
+    
 }
 
 extension BrowseTableViewController {

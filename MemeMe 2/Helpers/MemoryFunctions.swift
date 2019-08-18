@@ -43,7 +43,7 @@ enum MemoryFunctions {
     //Managed results controller for the Memes entity
     static var resultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<NSFetchRequestResult> in
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: data.entityName)
-        var managedObjectContext = MemoryFunctions.persistentContainer.viewContext
+        var managedObjectContext = MemoryFunctions.getManagedObjectContext()
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: data.sortDescriptor, ascending: false)]
         
