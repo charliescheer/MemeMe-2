@@ -135,6 +135,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print("service was canceled")
+                self.dismiss(animated: true, completion: nil)
             }
             
             if error != nil {
