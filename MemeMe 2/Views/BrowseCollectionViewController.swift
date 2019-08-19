@@ -8,17 +8,63 @@
 
 import UIKit
 
-class BrowseCollectionViewController: BrowseViewController {
+class BrowseCollectionViewController: BrowseViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+//    var lpgr = UILongPressGestureRecognizer()
     
-    private let spacing: CGFloat = 1.0
+    private let spacing: CGFloat = 3.0
+
     
+    func deleteMeme() {
+        print("delete")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setFlowLayoutProperties()
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
+        lpgr.minimumPressDuration = 0.5
+        lpgr.delaysTouchesBegan = true
+        lpgr.delegate = self
+        self.collectionView.addGestureRecognizer(lpgr)
     }
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state != UIGestureRecognizer.State.ended {
+            print(gestureRecognizer)
+            print(gestureRecognizer.location(in: gestureRecognizer.view))
+            let point = gestureRecognizer.location(in: gestureRecognizer.view)
+        let alertController = UIAlertController(title: "Delete", message: "Do you want to delete this Meme?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            let p = self.view.convert(point, to: self.collectionView)
+            let indexPath = self.collectionView.indexPathForItem(at: p)
+
+            if let index = indexPath {
+                MemoryFunctions.deleteSelectedMemeAt(index)
+            }
+            
+            self.collectionReloadData()
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func collectionReloadData() {
+        
+        do {
+            try resultsController.performFetch()
+            collectionView.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -62,11 +108,17 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
             }
         }
         
-        cell.backgroundColor = UIColor.blue
-        
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+        print(collectionView.cellForItem(at: indexPath))
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        print(cell?.frame.midX)
+        print(cell?.frame.midY)
+    }
     
     /*CollectionViewCell Spacing code found at https://medium.com/@NickBabo/equally-spaced-uicollectionview-cells-6e60ce8d457b
     Author:Nicholas Babo
@@ -80,7 +132,7 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
         
         if let collection = self.collectionView {
             let width = (collection.bounds.width - totalSpacing) / numberOfItemsPerRow
-            return CGSize(width: width, height: width)
+            return CGSize(width: width*3, height: width*3)
         } else {
             return CGSize(width: 0.0, height: 0.0)
         }

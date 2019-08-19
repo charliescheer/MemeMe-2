@@ -62,6 +62,22 @@ enum MemoryFunctions {
         return controller
     }()
     
+    static func deleteSelectedMemeAt(_ indexPath: IndexPath) {
+        let context = MemoryFunctions.getManagedObjectContext()
+        guard let objectToDelete = resultsController.object(at: indexPath) as? Memes else {
+            return
+        }
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memes")
+        
+        do {
+            try context.fetch(fetchRequest)
+            context.delete(objectToDelete)
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension MemoryFunctions {

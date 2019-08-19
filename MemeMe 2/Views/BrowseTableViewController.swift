@@ -59,34 +59,23 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let context = MemoryFunctions.getManagedObjectContext()
-            guard let objectToDelete = resultsController.object(at: indexPath) as? Memes else {
-                return
-            }
+           MemoryFunctions.deleteSelectedMemeAt(indexPath)
             
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memes")
-            
-            
-            
-            do {
-                try context.fetch(fetchRequest)
-                context.delete(objectToDelete)
-                print("success")
-                try context.save()
-            } catch {
-                print("oops")
-            }
-            
-            do {
-                try resultsController.performFetch()
-                tableView.reloadData()
-            } catch {
-                print("oops")
-            }
+            tableReloadData()
 
         }
     }
     
+    func tableReloadData() {
+        
+        do {
+            try resultsController.performFetch()
+            table.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
 }
 
 extension BrowseTableViewController {
