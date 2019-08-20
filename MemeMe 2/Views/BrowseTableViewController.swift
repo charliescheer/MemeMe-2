@@ -58,23 +58,13 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let memeData = resultsController.object(at: indexPath) as? Memes else {
-//            return
-//        }
-//    
-//        
-//            do {
-//                let decoder = PropertyListDecoder()
-//                let decodedMeme = try decoder.decode(Meme.self, from: memeData.meme!)
-//                meme = decodedMeme
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        
+        guard let memeData = resultsController.object(at: indexPath) as? Memes else {
+            return
+        }
+    
+        let destination = instantiateMemeEditViewControllerWith(memeData)
         
-        
-        
-        
+        present(destination, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -101,5 +91,6 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
 extension BrowseTableViewController {
     enum constants {
         static let browseCellIdentifier = "BrowseCell"
+        static let createMemeName = "CreateMeme"
     }
 }

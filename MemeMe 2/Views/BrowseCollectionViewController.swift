@@ -112,12 +112,13 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(collectionView.cellForItem(at: indexPath))
-        let cell = collectionView.cellForItem(at: indexPath)
+        guard let memeData = resultsController.object(at: indexPath) as? Memes else {
+            return
+        }
         
-        print(cell?.frame.midX)
-        print(cell?.frame.midY)
+        let destination = instantiateMemeEditViewControllerWith(memeData)
+        
+        present(destination, animated: true, completion: nil)
     }
     
     /*CollectionViewCell Spacing code found at https://medium.com/@NickBabo/equally-spaced-uicollectionview-cells-6e60ce8d457b

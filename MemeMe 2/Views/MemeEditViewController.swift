@@ -23,6 +23,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
+    var memeData: Memes? = nil
     
     //MARK: View loading/disappearing functions
     override func viewDidLoad() {
