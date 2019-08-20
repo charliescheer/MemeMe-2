@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate  {
     
     //MARK: Properties
     @IBOutlet weak var imageView: UIImageView!
@@ -19,6 +19,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var bottomToolBar: UIToolbar!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -31,6 +33,9 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
             cameraButton.isEnabled = false
         }
+        
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,6 +88,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
             NSAttributedString.Key.strokeWidth: -2,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
     
     //MARK: Keyboard will show notification methods

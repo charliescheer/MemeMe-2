@@ -57,12 +57,32 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
         return browseTableCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let memeData = resultsController.object(at: indexPath) as? Memes else {
+//            return
+//        }
+//    
+//        
+//            do {
+//                let decoder = PropertyListDecoder()
+//                let decodedMeme = try decoder.decode(Meme.self, from: memeData.meme!)
+//                meme = decodedMeme
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        
+        
+        
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
            MemoryFunctions.deleteSelectedMemeAt(indexPath)
             
             tableReloadData()
-
+            
         }
     }
     
