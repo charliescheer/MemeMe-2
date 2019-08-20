@@ -42,17 +42,17 @@ extension BrowseTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         //Decode the data saved in the Memes NSManagedObject to get the meme object
         //Present the decoded meme in the tableView
-        if let memeData = resultsController.object(at: indexPath) as? Memes {
-            do {
-                let decoder = PropertyListDecoder()
-                let meme = try decoder.decode(Meme.self, from: memeData.meme!)
-                browseTableCell.memeImageView.image = meme.meme
-                browseTableCell.topTextLabel.text = meme.topText
-                browseTableCell.bottomTextLabel.text = meme.bottomText
-            } catch {
-                print(error.localizedDescription)
-            }
+        guard let memeData = resultsController.object(at: indexPath) as? Memes else {
+            return browseTableCell
         }
+        
+        guard let decodedMeme = Meme.getMemeFromArchivedMemesData(memeData) else {
+            return browseTableCell
+        }
+
+        browseTableCell.memeImageView.image = decodedMeme.meme
+        browseTableCell.topTextLabel.text = decodedMeme.topText
+        browseTableCell.bottomTextLabel.text = decodedMeme.bottomText
         
         return browseTableCell
     }
