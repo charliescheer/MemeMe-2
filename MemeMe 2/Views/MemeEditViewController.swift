@@ -20,6 +20,8 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var bottomToolBar: UIToolbar!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
@@ -70,6 +72,14 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         view.backgroundColor = .lightGray
+        topToolBar.setBackgroundImage(UIImage(),
+                                        forToolbarPosition: UIBarPosition.any,
+                                        barMetrics: UIBarMetrics.default)
+        topToolBar.setShadowImage(UIImage(),
+                                    forToolbarPosition: UIBarPosition.any)
+        cancelButton.tintColor = .white
+        shareButton.tintColor = .white
+        
         
         //set text field properties and delegates
         configureTextField(topTextField, text: "TOP")

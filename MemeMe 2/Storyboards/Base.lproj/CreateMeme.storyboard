@@ -112,6 +112,7 @@
                         <outlet property="bottomTextField" destination="JBK-tg-qyn" id="741-jl-jXp"/>
                         <outlet property="bottomToolBar" destination="zUP-Ji-Qad" id="O7m-nH-JT3"/>
                         <outlet property="cameraButton" destination="WD8-Jv-fXF" id="YFZ-dV-LDe"/>
+                        <outlet property="cancelButton" destination="ygm-OQ-REt" id="7Uc-kU-Rqf"/>
                         <outlet property="imageView" destination="shI-70-Tjc" id="um8-9G-IjP"/>
                         <outlet property="scrollView" destination="LSD-G2-e58" id="T0t-uN-zCB"/>
                         <outlet property="shareButton" destination="lrx-Kc-iNn" id="CIK-Yo-KDk"/>
