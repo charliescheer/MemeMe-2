@@ -12,17 +12,14 @@ class BrowseCollectionViewController: BrowseViewController, UIGestureRecognizerD
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-//    var lpgr = UILongPressGestureRecognizer()
     
-    private let spacing: CGFloat = 3.0
-
+    private let spacing: CGFloat = 16.0
     
-    func deleteMeme() {
-        print("delete")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setFlowLayoutProperties()
+        
+        //set long press recognizer for deleting memes from Collection view
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
@@ -30,28 +27,38 @@ class BrowseCollectionViewController: BrowseViewController, UIGestureRecognizerD
         self.collectionView.addGestureRecognizer(lpgr)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        collectionView.reloadData()
+    }
+    
+    //Handle the longpress action
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state != UIGestureRecognizer.State.ended {
-            print(gestureRecognizer)
-            print(gestureRecognizer.location(in: gestureRecognizer.view))
             let point = gestureRecognizer.location(in: gestureRecognizer.view)
-        let alertController = UIAlertController(title: "Delete", message: "Do you want to delete this Meme?", preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-            let p = self.view.convert(point, to: self.collectionView)
-            let indexPath = self.collectionView.indexPathForItem(at: p)
+            
+            //Alert the user to confirm before deleting the selected Meme
+            let alertController = UIAlertController(title: "Delete", message: "Do you want to delete this Meme?", preferredStyle: .alert)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                let p = self.view.convert(point, to: self.collectionView)
+                let indexPath = self.collectionView.indexPathForItem(at: p)
+                
+                if let index = indexPath {
+                    MemoryFunctions.deleteSelectedMemeAt(index)
+                }
 
-            if let index = indexPath {
-                MemoryFunctions.deleteSelectedMemeAt(index)
+                self.collectionReloadData()
+                
             }
             
-            self.collectionReloadData()
+            //Allow user to cancel delete
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
             
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-
-        present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -65,20 +72,12 @@ class BrowseCollectionViewController: BrowseViewController, UIGestureRecognizerD
         }
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        collectionView.reloadData()
-    }
-    
+    //Set the sizing properties for the collection view
     func setFlowLayoutProperties() {
         
         flowLayout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         flowLayout.minimumInteritemSpacing = spacing
         flowLayout.minimumLineSpacing = spacing
-
-        
     }
     
 }
@@ -110,7 +109,7 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let memeData = resultsController.object(at: indexPath) as? Memes else {
             return
@@ -122,18 +121,18 @@ extension BrowseCollectionViewController: UICollectionViewDataSource, UICollecti
     }
     
     /*CollectionViewCell Spacing code found at https://medium.com/@NickBabo/equally-spaced-uicollectionview-cells-6e60ce8d457b
-    Author:Nicholas Babo
-    Article: Equally Spaced UICollectionView Cells
-    Site: Medium*/
+     Author:Nicholas Babo
+     Article: Equally Spaced UICollectionView Cells
+     Site: Medium*/
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfItemsPerRow: CGFloat = 5
-        let spacingBetweenItems: CGFloat = 3
+        let numberOfItemsPerRow: CGFloat = 3
+        let spacingBetweenItems: CGFloat = 16
         
         let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenItems)
         
         if let collection = self.collectionView {
             let width = (collection.bounds.width - totalSpacing) / numberOfItemsPerRow
-            return CGSize(width: width*3, height: width*3)
+            return CGSize(width: width, height: width * 1.5)
         } else {
             return CGSize(width: 0.0, height: 0.0)
         }

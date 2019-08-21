@@ -62,6 +62,8 @@ enum MemoryFunctions {
         return controller
     }()
     
+    
+    //Delete's a selected meme found at index path
     static func deleteSelectedMemeAt(_ indexPath: IndexPath) {
         let context = MemoryFunctions.getManagedObjectContext()
         guard let objectToDelete = resultsController.object(at: indexPath) as? Memes else {

@@ -83,7 +83,8 @@ struct Meme: Codable {
         return memeData
     }
     
-    static func getMemeFromArchivedMemesData(_ data: Memes) -> Meme? {
+    //Function to take a Memes object, decode it and return a Meme struct
+    public static func getMemeFromArchivedMemesData(_ data: Memes) -> Meme? {
         do {
             let decoder = PropertyListDecoder()
             let decodedMeme = try decoder.decode(Meme.self, from: data.meme!)

@@ -51,7 +51,6 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
                 topTextField.text = unarchivedMeme.topText
                 bottomTextField.text = unarchivedMeme.bottomText
             }
-            
         }
         
         if imageView.image != nil {
@@ -94,6 +93,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
+    //Configures appearance for text fields
     func configureTextField(_ textField: UITextField, text: String) {
         textField.text = text
         textField.textAlignment = .center
@@ -110,7 +110,9 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
     }
-    
+   
+    //Allow zooming for scroll view.
+    //Allows for cropping an image by zooming in on the view
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
@@ -186,21 +188,25 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     func save() {
         let context = MemoryFunctions.getManagedObjectContext()
         
+        //Set new Meme to be saved
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: saveCroppedImage(), meme: generateMemedImage())
         let memeData = meme.getMemeAsData()
         
+        //If editing a current meme, it will be deleted from coreData before saving the new version
         if managedMemesObjectFromStorage != nil {
             if let memeToBeRemoved = managedMemesObjectFromStorage {
                 context.delete(memeToBeRemoved)
             }
         }
         
+        //Saves new meme
         if let memeToBeSaved = NSEntityDescription.insertNewObject(forEntityName: data.entityName, into: context) as? Memes {
             memeToBeSaved.uuid = UUID()
             memeToBeSaved.meme = memeData
             memeToBeSaved.creationDate = Date()
         }
         
+        //Update coredata
         MemoryFunctions.saveContext(context: context)
     }
     
@@ -218,18 +224,23 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         return memedImage
     }
     
+    //Generate a new image with out toolbars or meme text fields
     func saveCroppedImage() -> UIImage {
+        //Hide toolbars and text
         hideToolbars(true)
         hideTextFields(true)
         
+        //Capture the Screen
         let croppedImage = createImageFromCurrentScreen()
         
+        //Restore toolbars and text
         hideTextFields(false)
         hideToolbars(false)
         return croppedImage
         
     }
     
+    //Create an UIimage from the screen and return it
     func createImageFromCurrentScreen() -> UIImage {
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -239,10 +250,10 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         return newImage
     }
     
+    //Boolean toggle to hide meme text fields
     func hideTextFields(_ bool: Bool) {
         self.topTextField.isHidden = bool
         self.bottomTextField.isHidden = bool
-        
     }
     
     //Boolean toggle to hide or show the toolsbars on the screen
