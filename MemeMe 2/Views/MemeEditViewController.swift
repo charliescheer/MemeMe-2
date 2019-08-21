@@ -25,7 +25,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
-    var memeData: Memes? = nil
+    var managedMemesObjectFromStorage: Memes? = nil
     
     //MARK: View loading/disappearing functions
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidAppear(animated)
         subscribeToKeyboardNotifications()
         
-        if let data = memeData {
+        if let data = managedMemesObjectFromStorage {
             if let unarchivedMeme = Meme.getMemeFromArchivedMemesData(data) {
                 imageView.image = unarchivedMeme.image
                 topTextField.text = unarchivedMeme.topText
@@ -183,11 +183,17 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //Creates Meme object and sets it's properties
     //Save meme to coreData
-    func save () {
+    func save() {
         let context = MemoryFunctions.getManagedObjectContext()
         
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: saveCroppedImage(), meme: generateMemedImage())
         let memeData = meme.getMemeAsData()
+        
+        if managedMemesObjectFromStorage != nil {
+            if let memeToBeRemoved = managedMemesObjectFromStorage {
+                context.delete(memeToBeRemoved)
+            }
+        }
         
         if let memeToBeSaved = NSEntityDescription.insertNewObject(forEntityName: data.entityName, into: context) as? Memes {
             memeToBeSaved.uuid = UUID()
@@ -196,9 +202,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         MemoryFunctions.saveContext(context: context)
-        
     }
-        
     
     //Generate the meme by combining the image and the text fields
     func generateMemedImage() -> UIImage {
@@ -238,6 +242,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     func hideTextFields(_ bool: Bool) {
         self.topTextField.isHidden = bool
         self.bottomTextField.isHidden = bool
+        
     }
     
     //Boolean toggle to hide or show the toolsbars on the screen

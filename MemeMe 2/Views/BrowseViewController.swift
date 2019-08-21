@@ -38,11 +38,11 @@ class BrowseViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    func instantiateMemeEditViewControllerWith(_ memeData: Memes) -> MemeEditViewController {
+    func instantiateMemeEditViewControllerWith(_ savedMemesObject: Memes) -> MemeEditViewController {
         let storyboard = UIStoryboard(name: "CreateMeme", bundle: nil)
         let vc = storyboard.instantiateInitialViewController() as! MemeEditViewController
         
-        vc.memeData = memeData
+        vc.managedMemesObjectFromStorage = savedMemesObject
         
         return vc
     }
