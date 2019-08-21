@@ -42,6 +42,16 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         subscribeToKeyboardNotifications()
+        
+        if let data = memeData {
+            if let unarchivedMeme = Meme.getMemeFromArchivedMemesData(data) {
+                imageView.image = unarchivedMeme.image
+                topTextField.text = unarchivedMeme.topText
+                bottomTextField.text = unarchivedMeme.bottomText
+            }
+            
+        }
+        
         if imageView.image != nil {
             allowTextEditingAndSharing(true)
         }
@@ -166,7 +176,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
     func save () {
         let context = MemoryFunctions.getManagedObjectContext()
         
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, meme: generateMemedImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: saveCroppedImage(), meme: generateMemedImage())
         let memeData = meme.getMemeAsData()
         
         if let memeToBeSaved = NSEntityDescription.insertNewObject(forEntityName: data.entityName, into: context) as? Memes {
@@ -185,10 +195,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         hideToolbars(true)
         
         //capture the screen
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        let memedImage = createImageFromCurrentScreen()
         
         //restore the toolbars
         hideToolbars(false)
@@ -196,6 +203,31 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         return memedImage
     }
     
+    func saveCroppedImage() -> UIImage {
+        hideToolbars(true)
+        hideTextFields(true)
+        
+        let croppedImage = createImageFromCurrentScreen()
+        
+        hideTextFields(false)
+        hideToolbars(false)
+        return croppedImage
+        
+    }
+    
+    func createImageFromCurrentScreen() -> UIImage {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    func hideTextFields(_ bool: Bool) {
+        self.topTextField.isHidden = bool
+        self.bottomTextField.isHidden = bool
+    }
     
     //Boolean toggle to hide or show the toolsbars on the screen
     func hideToolbars(_ bool: Bool) {

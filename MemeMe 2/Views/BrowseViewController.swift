@@ -42,7 +42,7 @@ class BrowseViewController: UIViewController {
         let storyboard = UIStoryboard(name: "CreateMeme", bundle: nil)
         let vc = storyboard.instantiateInitialViewController() as! MemeEditViewController
         
-        destination.memeData = memeData
+        vc.memeData = memeData
         
         return vc
     }
