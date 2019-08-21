@@ -84,6 +84,6 @@ extension MemoryFunctions {
     enum data {
         static let persistentContainerName = "MemesDataModel"
         static let entityName = "Memes"
-        static let sortDescriptor = "uuid"
+        static let sortDescriptor = "creationDate"
     }
 }

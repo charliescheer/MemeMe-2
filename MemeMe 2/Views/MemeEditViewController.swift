@@ -182,6 +182,7 @@ class MemeEditViewController: UIViewController, UIImagePickerControllerDelegate,
         if let memeToBeSaved = NSEntityDescription.insertNewObject(forEntityName: data.entityName, into: context) as? Memes {
             memeToBeSaved.uuid = UUID()
             memeToBeSaved.meme = memeData
+            memeToBeSaved.creationDate = Date()
         }
         
         MemoryFunctions.saveContext(context: context)
